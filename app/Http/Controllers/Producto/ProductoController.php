@@ -5,67 +5,66 @@ namespace App\Http\Controllers\Producto;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductoRequest;
+use App\Http\Requests\UpdateProductoRequest;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
    {
         $productos = Producto::all();
         return view('producto.index', compact('productos')); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
      return view('producto.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreProductoRequest $request)
     {
-         $request->validate([
-            'nombre' => 'required',
-            'precio' => 'required|numeric',
-        ]);
+        $data = $request->validated();
+       Producto::create([
+        'nom_producto'        => $data['nom_producto'],
+        'des_producto'        => $data['des_producto'],
+        'cant_producto'       => $data['cant_producto'],
+        'pre_producto'        => $data['pre_producto'],
 
-        Producto::create($request->all());
-        return redirect()->route('producto.index')->with('success', 'Producto agregado.');
+        // Valores por defecto
+        'ima_producto'        => 'default.png',
+        'est_producto'        => 1,
+        'id_categoria'        => 1,
+        'usuarios_id_usuario' => auth()->id() ?? 1,
+    ]);
+
+    return redirect()->route('producto.index')->with('ok', '✅ Producto agregado correctamente');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Producto $producto)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Producto $producto)
     {
-        //
+          return view('producto.edit', compact('producto'));
+    
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+ 
     public function update(Request $request, Producto $producto)
     {
-        //
-    }
+         $validated = $request->validate([
+        'nom_producto' => 'required|string|max:255',
+        'des_producto' => 'nullable|string',
+        'pre_producto' => 'required|numeric|min:0',
+        'cant_producto' => 'required|integer|min:0',
+        'id_categoria' => 'required|exists:categorias,id_categoria',
+    ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    $producto->update($validated);
+
+    return redirect()->route('producto.index')->with('success', 'Producto actualizado correctamente');
+}
     public function destroy(Producto $producto)
     {
          $producto->delete();

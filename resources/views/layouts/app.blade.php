@@ -31,8 +31,8 @@
                 </header>
             @endif
 
-            <main>
-    @yield('content')
+           <main>
+    {{ $slot }}
 </main>
         </div>
 
