@@ -3,71 +3,63 @@
 namespace App\Http\Controllers\Producto;
 
 use App\Http\Controllers\Controller;
-use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Models\Producto;
+use App\Models\Categoria; // si tienes tabla categorias
+use App\Models\Usuario; // si el producto pertenece a un usuario
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 
 class ProductoController extends Controller
 {
-
     public function index()
-   {
-        $productos = Producto::all();
-        return view('producto.index', compact('productos')); 
+    {
+        $productos = Producto::with(['categoria', 'usuario']) // si tienes relaciones
+            ->orderBy('id_producto')
+            ->get();
+
+        return view('producto.index', compact('productos'));
     }
 
     public function create()
     {
-     return view('producto.create');
+        return view('producto.create', [
+            'categorias' => Categoria::orderBy('nombre_categoria')->get(['id_categoria', 'nombre_categoria']),
+            'usuario'   => Usuario::orderBy('nombre')->get(['id_usuario', 'nombre']),
+        ]);
     }
-    public function store(StoreProductoRequest $request)
-    {
-        $data = $request->validated();
-       Producto::create([
-        'nom_producto'        => $data['nom_producto'],
-        'des_producto'        => $data['des_producto'],
-        'cant_producto'       => $data['cant_producto'],
-        'pre_producto'        => $data['pre_producto'],
 
-        // Valores por defecto
-        'ima_producto'        => 'default.png',
-        'est_producto'        => 1,
-        'id_categoria'        => 1,
-        'usuarios_id_usuario' => auth()->id() ?? 1,
-    ]);
+    public function store(StoreProductoRequest $request)
+   {
+    $data = $request->validated();
+    $data['usuario_id'] = auth()->id();
+    Producto::create($data);
 
     return redirect()->route('producto.index')->with('ok', '✅ Producto agregado correctamente');
-    }
-    public function show(Producto $producto)
-    {
-        //
-    }
+}
 
     public function edit(Producto $producto)
     {
-          return view('producto.edit', compact('producto'));
-    
+        return view('producto.edit', [
+            'producto'   => $producto,
+            'categoria' => Categoria::orderBy('nombre_categoria')->get(['id_categoria', 'nombre_categoria']),
+            'usuario'   => Usuario::orderBy('nombre')->get(['id_usuario', 'nombre']),
+        ]);
     }
 
- 
-    public function update(Request $request, Producto $producto)
+    public function update(UpdateProductoRequest $request, Producto $producto)
     {
-         $validated = $request->validate([
-        'nom_producto' => 'required|string|max:255',
-        'des_producto' => 'nullable|string',
-        'pre_producto' => 'required|numeric|min:0',
-        'cant_producto' => 'required|integer|min:0',
-        'id_categoria' => 'required|exists:categorias,id_categoria',
-    ]);
+        $producto->update($request->validated());
+        return redirect()->route('producto.index')->with('ok', '✅ Producto actualizado');
+    }
 
-    $producto->update($validated);
-
-    return redirect()->route('producto.index')->with('success', 'Producto actualizado correctamente');
-}
     public function destroy(Producto $producto)
     {
-         $producto->delete();
-        return redirect()->route('producto.index')->with('success', 'Producto eliminado.');
+        try {
+            $producto->delete();
+            return back()->with('ok', 'Producto eliminado');
+        } catch (\Throwable $e) {
+            return back()->withErrors('⚠️ No se puede eliminar: tiene registros relacionados.');
+        }
     }
 }

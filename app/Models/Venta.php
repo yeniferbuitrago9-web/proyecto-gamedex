@@ -12,51 +12,33 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Venta
  * 
- * @property int $id_ventas
- * @property string $producto
- * @property Carbon $fecha_venta
- * @property string $total
- * @property int $usuarios_id_usuario
- * @property int $cantidad
- * 
- * @property Comprobante $comprobante
- * @property Transaccione $transaccione
- * @property Pasarela $pasarela
+ * @property int $id_venta
+ * @property int|null $cliente_id
+ * @property int|null $vendedor_id
+ * @property Carbon|null $fecha
+ * @property float $total
+ * @property string|null $estado
  *
  * @package App\Models
  */
 class Venta extends Model
 {
 	protected $table = 'ventas';
-	protected $primaryKey = 'id_ventas';
+	protected $primaryKey = 'id_venta';
 	public $timestamps = false;
 
 	protected $casts = [
-		'fecha_venta' => 'datetime',
-		'usuarios_id_usuario' => 'int',
-		'cantidad' => 'int'
+		'cliente_id' => 'int',
+		'vendedor_id' => 'int',
+		'fecha' => 'datetime',
+		'total' => 'float'
 	];
 
 	protected $fillable = [
-		'producto',
-		'fecha_venta',
+		'cliente_id',
+		'vendedor_id',
+		'fecha',
 		'total',
-		'usuarios_id_usuario',
-		'cantidad'
+		'estado'
 	];
-
-	public function comprobante()
-	{
-		return $this->belongsTo(Comprobante::class, 'id_ventas');
-	}
-
-	public function transaccione()
-	{
-		return $this->belongsTo(Transaccione::class, 'id_ventas');
-	}
-
-	public function pasarela()
-	{
-		return $this->belongsTo(Pasarela::class, 'id_ventas');
-	}
 }

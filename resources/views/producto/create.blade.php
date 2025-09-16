@@ -5,26 +5,31 @@
         </h2>
     </x-slot>
 
-    <div class="py-6 px-8">
-        <form action="{{ route('producto.store') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label class="block">Nombre</label>
-                <input type="text" name="nom_producto" class="border p-2 w-full" required>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="py-8">
+                    <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white p-6 shadow sm:rounded-lg">
+                            <form action="{{ route('producto.store') }}" method="POST" class="space-y-6">
+                                @csrf
+                                @include('producto._form', [
+                                     'producto' => null,
+                                     'categorias' => $categorias,
+                                     'usuario' => $usuario
+                                    
+                                ])
+
+                                <div class="pt-4 flex gap-3">
+                                <button class="px-4 py-2 bg-red-500 text-white rounded">Actualizar</button>
+                                    <a href="{{ route('producto.index') }}"
+                                       class="px-4 py-2 border rounded">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-4">
-                <label class="block">Descripción</label>
-                <textarea name="des_producto" class="border p-2 w-full"></textarea>
-            </div>
-            <div class="mb-4">
-                <label class="block">Cantidad</label>
-                <input type="number" name="cant_producto" class="border p-2 w-full" required>
-            </div>
-            <div class="mb-4">
-                <label class="block">Precio</label>
-                <input type="number" step="0.01" name="pre_producto" class="border p-2 w-full" required>
-            </div>
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Guardar</button>
-        </form>
+        </div>
     </div>
 </x-app-layout>

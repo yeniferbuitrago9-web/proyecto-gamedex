@@ -10,25 +10,21 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Carrito
+ * Class Categoria
  * 
- * @property int $id_carrito
- * @property int|null $usuario_id
+ * @property int $id_categoria
+ * @property string $nombre_categoria
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
  * @package App\Models
  */
-class Carrito extends Model
+class Categoria extends Model
 {
-	protected $table = 'carritos';
-	protected $primaryKey = 'id_carrito';
-
-	protected $casts = [
-		'usuario_id' => 'int'
-	];
+	protected $table = 'categorias';
+	protected $primaryKey = 'id_categoria';
 
 	protected $fillable = [
-		'usuario_id'
+		'nombre_categoria'
 	];
 }

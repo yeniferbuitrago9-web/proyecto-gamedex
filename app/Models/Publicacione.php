@@ -10,36 +10,37 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Reporte
+ * Class Publicacione
  * 
- * @property int $id_reporte
+ * @property int $id_publicacion
  * @property int|null $usuario_id
  * @property string|null $tipo
- * @property int|null $referencia_id
- * @property string $descripcion
- * @property string|null $estado
+ * @property int|null $producto_id
+ * @property int|null $venta_id
+ * @property string $contenido
  * @property Carbon|null $fecha
  *
  * @package App\Models
  */
-class Reporte extends Model
+class Publicacione extends Model
 {
-	protected $table = 'reportes';
-	protected $primaryKey = 'id_reporte';
+	protected $table = 'publicaciones';
+	protected $primaryKey = 'id_publicacion';
 	public $timestamps = false;
 
 	protected $casts = [
 		'usuario_id' => 'int',
-		'referencia_id' => 'int',
+		'producto_id' => 'int',
+		'venta_id' => 'int',
 		'fecha' => 'datetime'
 	];
 
 	protected $fillable = [
 		'usuario_id',
 		'tipo',
-		'referencia_id',
-		'descripcion',
-		'estado',
+		'producto_id',
+		'venta_id',
+		'contenido',
 		'fecha'
 	];
 }

@@ -13,23 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id_permiso
  * @property string $nombre
- * 
- * @property RolPermiso $rol_permiso
+ * @property string|null $descripcion
  *
  * @package App\Models
  */
 class Permiso extends Model
 {
-	protected $table = 'permiso';
+	protected $table = 'permisos';
 	protected $primaryKey = 'id_permiso';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'nombre'
+		'nombre',
+		'descripcion'
 	];
-
-	public function rol_permiso()
-	{
-		return $this->belongsTo(RolPermiso::class, 'id_permiso');
-	}
 }

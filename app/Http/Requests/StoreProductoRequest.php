@@ -22,10 +22,12 @@ class StoreProductoRequest extends FormRequest
     public function rules(): array
     {
         return [
-               'nom_producto'   => 'required|string|max:20',
-        'des_producto'   => 'required|string|max:250',
-        'cant_producto'  => 'required|integer|min:1',
-        'pre_producto'   => 'required|numeric|min:0',
+        'nombre'   => 'required|string|max:20',
+        'descripcion'   => 'required|string|max:250',
+        'precio'   => 'required|numeric|min:0',
+        'cantidad'  => 'required|integer|min:1',
+        'dias_garantia'  => 'required|integer|min:1',
+        
             
         ];
     }
@@ -33,22 +35,26 @@ class StoreProductoRequest extends FormRequest
     public function messages()
     {
         return[
-            'nom_producto.required'  => 'El nombre del producto es obligatorio',
-        'nom_producto.max'       => 'El nombre no puede superar los 20 caracteres',
+            'nombre.required'  => 'El nombre del producto es obligatorio',
+        'nombre.max'       => 'El nombre no puede superar los 20 caracteres',
 
         // Descripción
-        'des_producto.required'  => 'La descripción es obligatoria',
-        'des_producto.max'       => 'La descripción no puede superar los 250 caracteres',
+        'descripcion.required'  => 'La descripción es obligatoria',
+        'descripcion.max'       => 'La descripción no puede superar los 250 caracteres',
 
         // Cantidad
-        'cant_producto.required' => 'La cantidad es obligatoria',
-        'cant_producto.integer'  => 'La cantidad debe ser un número entero',
-        'cant_producto.min'      => 'La cantidad debe ser al menos 1',
+        'cantidad.required' => 'La cantidad es obligatoria',
+        'cantidad.integer'  => 'La cantidad debe ser un número entero',
+        'cantidad.min'      => 'La cantidad debe ser al menos 1',
 
         // Precio
-        'pre_producto.required'  => 'El precio es obligatorio',
-        'pre_producto.numeric'   => 'El precio debe ser un valor numérico',
-        'pre_producto.min'       => 'El precio no puede ser negativo',
+        'precio.required'  => 'El precio es obligatorio',
+        'precio.numeric'   => 'El precio debe ser un valor numérico',
+        'precio.min'       => 'El precio no puede ser negativo',
+
+        'dias_garantia.required'  => 'la garantia es obligatora',
+        'dias_garantia.numeric'   => 'La garantia debe ser un valor numérico',
+        'dias_garantia.min'       => 'La garantia no puede ser negativo',
         ];
     }
 }

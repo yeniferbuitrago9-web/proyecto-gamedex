@@ -9,21 +9,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class RolPermiso
+ * Class UsuarioRol
  * 
+ * @property int $id_usuario
  * @property int $id_rol
- * @property int $id_permiso
  *
  * @package App\Models
  */
-class RolPermiso extends Model
+class UsuarioRol extends Model
 {
-	protected $table = 'rol_permiso';
+	protected $table = 'usuario_rol';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_rol' => 'int',
-		'id_permiso' => 'int'
+		'id_usuario' => 'int',
+		'id_rol' => 'int'
 	];
 }

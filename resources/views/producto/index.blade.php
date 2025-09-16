@@ -15,23 +15,25 @@
     @endif
        <table id="productos" class="min-w-full bg-white border">
             <thead>
-                <tr>
-                    <th class="py-2 px-4 border">ID</th>
-                    <th class="py-2 px-4 border">Nombre</th>
-                    <th class="py-2 px-4 border">Descripcion</th>
-                    <th class="py-2 px-4 border">Cantidad</th>
-                    <th class="py-2 px-4 border">Precio</th>
-                    <th class="py-2 px-4 border">Acciones</th>
-                </tr>
+                   <tr>
+                            <th class="py-2 px-4 border">Nombre</th>
+                            <th class="py-2 px-4 border">Descripción</th>
+                            <th class="py-2 px-4 border">Cantidad</th>
+                            <th class="py-2 px-4 border">Precio</th>
+                            <th class="py-2 px-4 border">Garantia</th>
+                            <th class="py-2 px-4 border">Categoria</th>
+                            <th class="py-2 px-4 border">Acciones</th>
+                        </tr>
             </thead>
             <tbody>
                 @foreach($productos as $producto)
                     <tr>
-                        <td class="py-2 px-4 border">{{ $producto->id_producto }}</td> 
-                        <td class="py-2 px-4 border">{{ $producto->nom_producto }}</td>
-                        <td class="py-2 px-4 border">{{ $producto->des_producto }}</td>
-                        <td class="py-2 px-4 border">{{ $producto->cant_producto }}</td>
-                         <td class="py-2 px-4 border">{{ $producto->pre_producto }}</td>
+                        <td class="py-2 px-4 border">{{ $producto->nombre }}</td> 
+                        <td class="py-2 px-4 border">{{ $producto->descripcion }}</td>
+                        <td class="py-2 px-4 border">{{ $producto->cantidad }}</td>
+                        <td class="py-2 px-4 border">{{ $producto->precio }}</td>
+                         <td class="py-2 px-4 border">{{ $producto->dias_garantia }}</td>
+                         <td>{{ $producto->nombre_categoria }}</td>
                         <td class="py-2 px-4 border">
         
                             </form>
