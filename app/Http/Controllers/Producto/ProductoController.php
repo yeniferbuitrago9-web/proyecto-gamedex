@@ -62,4 +62,9 @@ class ProductoController extends Controller
             return back()->withErrors('⚠️ No se puede eliminar: tiene registros relacionados.');
         }
     }
+    public function dashboard()
+{
+    $productos = Producto::all(); // Trae todos los productos
+    return view('dashboard', compact('productos'));
+}
 }
