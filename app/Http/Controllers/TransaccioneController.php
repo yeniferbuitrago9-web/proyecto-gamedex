@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaccione;
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+use App\Models\Producto;
+use App\Http\Requests\StoreTransaccioneRequest;
+use App\Http\Requests\UpdateTransaccioneRequest;
+use App\Enums\TipoTransaccion;
+
 
 class TransaccioneController extends Controller
 {
@@ -12,8 +18,8 @@ class TransaccioneController extends Controller
      */
     public function index()
     {
-         $transacciones = Transaccione::with(['usuario', 'producto'])->get();
-        return view('transacciones.index', compact('transacciones'));
+         $transaccione = Transaccione::with(['usuario', 'producto'])->get();
+        return view('transaccione.index', compact('transaccione'));
     }
 
     /**
@@ -23,13 +29,15 @@ class TransaccioneController extends Controller
     {
         $usuarios = Usuario::all();
         $productos = Producto::all();
-        return view('transacciones.create', compact('usuarios', 'productos'));
+        $tipos = TipoTransaccion::cases();
+        return view('transaccione.create', compact('tipos', 'usuarios', 'productos'));
     }
 
     public function store(TransaccioneRequest $request)
     {
+        
         Transaccione::create($request->validated());
-        return redirect()->route('transacciones.index')->with('success', 'Transacción creada correctamente');
+        return redirect()->route('transaccione.index')->with('success', 'Transacción creada correctamente');
     }
 
 
@@ -45,19 +53,21 @@ class TransaccioneController extends Controller
     {
                 $usuarios = Usuario::all();
         $productos = Producto::all();
-        return view('transacciones.edit', compact('transaccione', 'usuarios', 'productos'));
+        return view('transaccione.edit', compact('transaccione', 'usuarios', 'productos'));
     }
 
    
     public function update(TransaccioneRequest $request, Transaccione $transaccione)
     {
         $transaccione->update($request->validated());
-        return redirect()->route('transacciones.index')->with('success', 'Transacción actualizada correctamente');
+        return redirect()->route('transaccione.index')->with('success', 'Transacción actualizada correctamente');
     }
 
     public function destroy(Transaccione $transaccione)
     {
         $transaccione->delete();
-        return redirect()->route('transacciones.index')->with('success', 'Transacción eliminada correctamente');
+        return redirect()->route('transaccione.index')->with('success', 'Transacción eliminada correctamente');
     }
+
+    
 }

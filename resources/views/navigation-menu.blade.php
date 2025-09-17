@@ -10,6 +10,8 @@
                     </a>
                 </div>
 
+
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -25,6 +27,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('usuario.index') }}" :active="request()->routeIs('usuario.*')">
                         {{ __('Usuarios') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('transaccione.index') }}" :active="request()->routeIs('transaccione.*')">
+                        {{ __('Transacciones') }}
                     </x-nav-link>
                 </div>
             </div>
