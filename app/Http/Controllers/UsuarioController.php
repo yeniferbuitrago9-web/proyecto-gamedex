@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateUsuarioRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
+
 {
     public function index()
     {
