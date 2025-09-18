@@ -8,13 +8,15 @@
                 <!-- Espacio para logo -->
                 <div class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
                     <!-- Aquí luego pones tu logo -->
-                    <span class="text-gray-500 text-sm">Logo</span>
+                    <span class="text-gray-500 text-sm">Bienvenidos</span>
                 </div>
                 <h1 class="text-3xl font-bold text-blue-600">GameDex</h1>
             </div>
 
             <!-- Validación de errores -->
             <x-validation-errors class="mb-4" />
+
+            
 
             <!-- Mensajes de sesión -->
             @session('status')
