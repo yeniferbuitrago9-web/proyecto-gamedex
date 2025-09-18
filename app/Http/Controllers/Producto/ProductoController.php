@@ -67,4 +67,8 @@ class ProductoController extends Controller
     $productos = Producto::all(); // Trae todos los productos
     return view('dashboard', compact('productos'));
 }
+public function show(Producto $producto)
+{
+    return view('producto.show', compact('producto'));
+}
 }
