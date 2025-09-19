@@ -56,4 +56,8 @@ public function usuario()
 {
     return $this->belongsTo(\App\Models\Usuario::class, 'id_usuario', 'id_usuario');
 }
+public function carritos()
+{
+    return $this->hasMany(Carrito::class, 'producto_id');
+}
 }

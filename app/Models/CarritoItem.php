@@ -35,4 +35,14 @@ class CarritoItem extends Model
 		'producto_id',
 		'cantidad'
 	];
+	    public function carrito()
+    {
+        return $this->belongsTo(Carrito::class, 'carrito_id');
+    }
+
+    // Item pertenece a un producto
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
 }

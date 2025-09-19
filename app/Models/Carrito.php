@@ -31,4 +31,15 @@ class Carrito extends Model
 	protected $fillable = [
 		'usuario_id'
 	];
+	    public function items()
+    {
+        return $this->hasMany(CarritoItem::class, 'carrito_id');
+    }
+
+    // Relación con usuario (opcional)
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
 }
+
