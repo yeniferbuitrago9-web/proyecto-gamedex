@@ -27,6 +27,17 @@
             <p class="text-gray-700 mb-3">
                 <strong>Descripción:</strong> {{ $producto->descripcion ?? 'Sin descripción' }}
             </p>
+            <form action="{{ route('carrito.store') }}" method="POST" class="mt-4">
+    @csrf
+    <input type="hidden" name="producto_id" value="{{ $producto->id_producto }}">
+    <input type="number" name="cantidad" value="1" min="1"
+           class="border rounded px-2 py-1 w-20">
+
+    <button type="submit"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        🛒 Añadir al carrito
+    </button>
+</form>
 
             <a href="{{ route('producto.index') }}" 
                class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 w-fit">

@@ -4,41 +4,55 @@ namespace App\Http\Controllers\carrito;
 
 use App\Http\Controllers\Controller;
 use App\Models\Carrito;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCarritoRequest;
+use App\Http\Requests\UpdateCarritoRequest;
 
 class CarritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
-    {
-        // Aquí irán los productos del carrito
-        // Por ahora devolvemos la vista vacía
-        $carrito = collect(); 
+   {
+    $carrito = Carrito::with('items.producto')
+        ->where('usuario_id', auth()->id())
+        ->first(); // un carrito por usuario
 
-        return view('carrito.index', compact('carrito'));
-    }
+    return view('carrito.index', compact('carrito'));
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   
+    public function store(StoreCarritoRequest $request)
+       {
+        // Validar
+        $request->validate([
+            'producto_id' => 'required|exists:productos,id_producto',
+            'cantidad' => 'required|integer|min:1'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
+        // Buscar el producto
+        $producto = Producto::findOrFail($request->producto_id);
+
+           $carrito = Carrito::firstOrCreate(
+        ['usuario_id' => auth()->id()]
+    );
+
+    // Agregar item al carrito
+    $carrito->items()->create([
+        'producto_id' => $producto->id_producto,
+        'cantidad' => $request->cantidad,
+        'precio' => $producto->precio
+    ]);
+
+    return redirect()->route('carrito.index')
+                     ->with('ok', 'Producto añadido al carrito');
+}
     public function show(Carrito $carrito)
     {
         //
@@ -48,23 +62,40 @@ class CarritoController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Carrito $carrito)
+{
+    $carrito->load('items.producto'); // 👈 carga ítems y productos
+    return view('carrito.edit', compact('carrito'));
+}
+    public function update(UpdateCarritoRequest $request, Carrito $carrito)
     {
-        //
+    // Validar que existan cantidades
+    $cantidades = $request->input('cantidades', []);
+
+    foreach ($cantidades as $itemId => $cantidad) {
+        // Buscar el item en este carrito
+        $item = $carrito->items()->where('id_item', $itemId)->first();
+
+        if ($item) {
+            $item->cantidad = $cantidad;
+            $item->save();
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Carrito $carrito)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    return redirect()->route('carrito.index')
+                     ->with('success', 'Carrito actualizado correctamente.');
+}
     public function destroy(Carrito $carrito)
     {
         //
     }
+    public function vaciar()
+{
+        $carrito = Carrito::first();
+        if ($carrito) {
+            $carrito->items()->delete();
+        }
+        return back()->with('ok', 'Carrito vaciado correctamente');
+    }
+
+
 }

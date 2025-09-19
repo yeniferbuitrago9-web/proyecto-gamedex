@@ -53,7 +53,10 @@ class TransaccioneController extends Controller
     {
                 $usuarios = Usuario::all();
         $productos = Producto::all();
-        return view('transaccione.edit', compact('transaccione', 'usuarios', 'productos'));
+         $tipos = TipoTransaccion::cases();
+         
+
+        return view('transaccione.edit', compact('transaccione', 'usuarios', 'productos','tipos'));
     }
 
    
