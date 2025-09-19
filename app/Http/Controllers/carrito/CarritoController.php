@@ -4,15 +4,14 @@ namespace App\Http\Controllers\carrito;
 
 use App\Http\Controllers\Controller;
 use App\Models\Carrito;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCarritoRequest;
 use App\Http\Requests\UpdateCarritoRequest;
 
 class CarritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
    {
     $carrito = Carrito::with('items.producto')
@@ -22,30 +21,37 @@ class CarritoController extends Controller
     return view('carrito.index', compact('carrito'));
 }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(StoreCarritoRequest $request)
-   {
-    $carrito = Carrito::firstOrCreate([
-        'usuario_id' => auth()->id(),
-    ]);
+       {
+        // Validar
+        $request->validate([
+            'producto_id' => 'required|exists:productos,id_producto',
+            'cantidad' => 'required|integer|min:1'
+        ]);
 
+        // Buscar el producto
+        $producto = Producto::findOrFail($request->producto_id);
+
+           $carrito = Carrito::firstOrCreate(
+        ['usuario_id' => auth()->id()]
+    );
+
+    // Agregar item al carrito
     $carrito->items()->create([
-        'producto_id' => $request->producto_id,
+        'producto_id' => $producto->id_producto,
         'cantidad' => $request->cantidad,
+        'precio' => $producto->precio
     ]);
 
     return redirect()->route('carrito.index')
-                     ->with('success', 'Producto agregado al carrito.');
+                     ->with('ok', 'Producto añadido al carrito');
 }
     public function show(Carrito $carrito)
     {
@@ -84,14 +90,12 @@ class CarritoController extends Controller
     }
     public function vaciar()
 {
-    $carrito = \App\Models\Carrito::where('usuario_id', auth()->id())->first();
-
-    if ($carrito) {
-        $carrito->items()->delete(); // elimina todos los items relacionados
+        $carrito = Carrito::first();
+        if ($carrito) {
+            $carrito->items()->delete();
+        }
+        return back()->with('ok', 'Carrito vaciado correctamente');
     }
-
-    return redirect()->route('carrito.index')->with('success', 'Carrito vaciado correctamente.');
-}
 
 
 }

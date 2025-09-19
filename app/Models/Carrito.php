@@ -33,7 +33,7 @@ class Carrito extends Model
 	];
 	    public function items()
     {
-        return $this->hasMany(CarritoItem::class, 'carrito_id');
+        return $this->hasMany(CarritoItem::class, 'carrito_id', 'id_carrito');
     }
 
     // Relación con usuario (opcional)

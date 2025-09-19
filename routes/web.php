@@ -14,8 +14,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::resource('usuario', UsuarioController::class)->names('usuario');
     Route::resource('transacciones', TransaccioneController::class)->names('transaccione');
     Route::delete('carrito/item/{item}', [CarritoItemController::class, 'destroy'])->name('carrito.item.destroy');
-  Route::delete('/carrito/vaciar', [CarritoController::class, 'vaciar'])
+    Route::delete('/carrito/vaciar', [CarritoController::class, 'vaciar'])
     ->name('carrito.vaciar');
+    Route::post('/carrito', [CarritoController::class, 'store'])->name('carrito.store');
 
 
     Route::get('/dashboard', function () {

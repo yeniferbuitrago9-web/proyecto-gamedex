@@ -14,7 +14,7 @@ class StoreCarritoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'producto_id' => 'required|exists:productos,id', // producto debe existir
+            'producto_id' => 'required|exists:productos,id_producto', // producto debe existir
             'cantidad' => 'required|integer|min:1',
         ];
     }

@@ -35,17 +35,25 @@
                          <td class="py-2 px-4 border">{{ $producto->dias_garantia }}</td>
                          <td>{{ $producto->categoria->nombre_categoria ?? '-' }}</td>
                         <td class="py-2 px-4 border">
-        
-                            </form>
-                            <a href="{{ route('producto.edit', $producto) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Editar</a>
+                            <form action="{{ route('carrito.store') }}" method="POST" style="display:inline">
+                    @csrf
+                    <input type="hidden" name="producto_id" value="{{ $producto->id_producto }}">
+                    <input type="hidden" name="cantidad" value="1">
+                    <button type="submit" class="bg-green-600 text-white px-3 py-1 rounded">🛒 Añadir</button>
+                     </form>
+
+                            <a href="{{ route('producto.edit', $producto) }}" class="bg-black-500 text-white px-3 py-1 rounded">✏️ </a>
                             <form action="{{ route('producto.destroy', $producto) }}" method="POST" style="display:inline" onsubmit="return confirm('¿eliminar?')">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Eliminar</button>
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" class="bg-black-500 text-white px-3 py-1 rounded">❌</button>
+                                </form>
+                           
                         </td>
                     </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table>    
     @endif
 </div>
 
