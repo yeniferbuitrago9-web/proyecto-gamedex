@@ -17,13 +17,16 @@
                                      'producto' => null,
                                      'categorias' => $categorias,
                                      'usuario' => $usuario
-                                    
                                 ])
 
                                 <div class="pt-4 flex gap-3">
-                                <button class="px-4 py-2 bg-red-500 text-white rounded">Actualizar</button>
-                                    <a href="{{ route('producto.index') }}"
-                                       class="px-4 py-2 border rounded">Cancelar</a>
+                                    {{-- Botón guardar --}}
+                                    <button class="btn-primary">Guardar</button>
+
+                                    {{-- Botón cancelar --}}
+                                    <a href="{{ route('producto.index') }}" class="btn-dark">
+                                        Cancelar
+                                    </a>
                                 </div>
                             </form>
                         </div>

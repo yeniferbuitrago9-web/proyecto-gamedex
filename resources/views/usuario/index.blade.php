@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <div class="container mx-auto px-4 py-6">
     <h1 class="text-2xl font-bold mb-4">Lista de Usuarios</h1>
     @if($usuarios->isEmpty())

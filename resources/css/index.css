@@ -1,0 +1,165 @@
+/* public/css/tablas.css */
+
+/* Contenedor general */
+.container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    color: #111827;
+    font-size: 0.95rem;
+}
+
+/* Botón principal (Agregar, etc.) */
+a.bg-blue-500 {
+    background-color: #374151;
+    color: #f9fafb;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+a.bg-blue-500:hover {
+    background-color: #1f2937;
+}
+
+/* --- BOTONES DATATABLES CON ÍCONOS Y COLORES --- */
+button.dt-button {
+    border: 1px solid #d1d5db;
+    color: #111827;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-right: 6px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* Copiar */
+button.buttons-copy {
+    background-color: #e0f2fe; /* azul claro */
+}
+button.buttons-copy::before {
+    content: "📋";
+}
+
+/* CSV */
+button.buttons-csv {
+    background-color: #fef9c3; /* amarillo suave */
+}
+button.buttons-csv::before {
+    content: "📑";
+}
+
+/* Excel */
+button.buttons-excel {
+    background-color: #dcfce7; /* verde claro */
+}
+button.buttons-excel::before {
+    content: "📊";
+}
+
+/* PDF */
+button.buttons-pdf {
+    background-color: #fee2e2; /* rojo claro */
+}
+button.buttons-pdf::before {
+    content: "📕";
+}
+
+/* Imprimir */
+button.buttons-print {
+    background-color: #ede9fe; /* morado suave */
+}
+button.buttons-print::before {
+    content: "🖨";
+}
+
+/* Hover (ligeramente más oscuro) */
+button.dt-button:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+button.dt-button:hover {
+    background-color: #e5e7eb;
+}
+
+/* Input buscar */
+.dataTables_filter input {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+/* --- ESTILO GENERAL PARA TODAS LAS TABLAS --- */
+table.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #111827; /* fondo tabla oscuro */
+    color: #f3f4f6;
+}
+
+/* Encabezados */
+table.dataTable thead th {
+    background-color: #000000; /* negro */
+    color: #2563eb; /* azul */
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Celdas */
+table.dataTable tbody td {
+    background-color: #1f2937; /* gris oscuro */
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #374151;
+}
+
+/* Hover en filas */
+table.dataTable tbody tr:hover {
+    background-color: #374151;
+    transition: 0.2s;
+}
+
+/* Botones dentro de la tabla */
+table.dataTable a,
+table.dataTable button {
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border: none;
+}
+
+/* Editar (amarillo) */
+table.dataTable a.bg-yellow-500 {
+    background-color: #facc15;
+    color: #1f2937;
+}
+table.dataTable a.bg-yellow-500:hover {
+    background-color: #eab308;
+}
+
+/* Eliminar (rojo) */
+table.dataTable button.bg-red-500 {
+    background-color: #ef4444;
+    color: white;
+}
+table.dataTable button.bg-red-500:hover {
+    background-color: #dc2626;
+}
+
+/* Ver (verde) */
+table.dataTable a.bg-green-500 {
+    background-color: #22c55e;
+    color: white;
+}
+table.dataTable a.bg-green-500:hover {
+    background-color: #16a34a;
+}

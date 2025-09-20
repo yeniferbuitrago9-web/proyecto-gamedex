@@ -15,16 +15,20 @@
                                 @csrf
                                 @method('PUT')
 
-                               @include('producto._form', [
-                                'producto' => $producto,
-                                'categorias' => $categoria,
-                                'usuario' => $usuario
+                                @include('producto._form', [
+                                    'producto' => $producto,
+                                    'categorias' => $categorias,
+                                    'usuario' => $usuario
                                 ])
 
                                 <div class="pt-4 flex gap-3">
-                               <button class="px-4 py-2 bg-red-500 text-white rounded">Actualizar</button>
-                                    <a href="{{ route('producto.index') }}"
-                                       class="px-4 py-2 border rounded">Cancelar</a>
+                                    {{-- Botón actualizar --}}
+                                    <button class="btn-success">Actualizar</button>
+
+                                    {{-- Botón cancelar --}}
+                                    <a href="{{ route('producto.index') }}" class="btn-dark">
+                                        Cancelar
+                                    </a>
                                 </div>
                             </form>
                         </div>
