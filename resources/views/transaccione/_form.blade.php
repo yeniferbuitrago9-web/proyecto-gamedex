@@ -1,15 +1,19 @@
 @php
+    use Carbon\Carbon;
+
     $val = fn($key, $default = '') => old($key, isset($transaccione) ? ($transaccione->{$key} ?? $default) : $default);
 @endphp
 
 <div class="space-y-4">
     <div>
         <label for="tipo" class="block font-medium text-gray-700">Tipo de transacción</label>
-       <select name="tipo_transaccion" id="tipo_transaccion" class="border rounded px-2 py-1 w-full">>
-    @foreach($tipos as $tipo)
-        <option value="{{ $tipo->value }}">{{ $tipo->name }}</option>
-    @endforeach
-</select>
+        <select name="tipo" id="tipo" class="border rounded px-2 py-1 w-full">
+            @foreach($tipos as $tipo)
+                <option value="{{ $tipo->value }}" {{ $val('tipo') == $tipo->value ? 'selected' : '' }}>
+                    {{ $tipo->name }}
+                </option>
+            @endforeach
+        </select>
         @error('tipo') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
     </div>
 
@@ -35,10 +39,17 @@
         </select>
     </div>
 
-    <div>
-        <label>Método de Pago</label>
-        <input type="text" name="metodo_pago" value="{{ $val('metodo_pago') }}" class="border rounded px-2 py-1 w-full">
-    </div>
+   <div>
+    <label for="metodo_pago" class="block font-medium text-gray-700">Método de Pago</label>
+    <select name="metodo_pago" id="metodo_pago" class="border rounded px-2 py-1 w-full">
+        @foreach($metodos as $metodo)
+            <option value="{{ $metodo->value }}" {{ $val('metodo_pago') == $metodo->value ? 'selected' : '' }}>
+                {{ ucfirst($metodo->value) }}
+            </option>
+        @endforeach
+    </select>
+    @error('metodo_pago') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+</div>
 
     <div>
         <label>Monto</label>
@@ -52,17 +63,22 @@
 
     <div>
         <label>Fecha</label>
-        <input type="date" name="fecha" value="{{ $val('fecha') ? $val('fecha')->format('Y-m-d') : '' }}" class="border rounded px-2 py-1 w-full">
+        <input type="date" name="fecha"
+            value="{{ $val('fecha') ? ($val('fecha') instanceof \Carbon\Carbon ? $val('fecha')->format('Y-m-d') : Carbon::parse($val('fecha'))->format('Y-m-d')) : '' }}"
+            class="border rounded px-2 py-1 w-full">
     </div>
 
-    <div>
-        <label>Estado</label>
-        <input type="text" name="estado" value="{{ $val('estado') }}" class="border rounded px-2 py-1 w-full">
-    </div>
+  <div>
+    <label for="estado" class="block font-medium text-gray-700">Estado</label>
+    <select name="estado" id="estado" class="border rounded px-2 py-1 w-full">
+        @foreach($estados as $estado)
+            <option value="{{ $estado->value }}" {{ $val('estado') == $estado->value ? 'selected' : '' }}>
+                {{ ucfirst($estado->value) }}
+            </option>
+        @endforeach
+    </select>
+    @error('estado') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+</div>
 
-    <div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-            {{ $submitButtonText ?? 'Guardar' }}
-        </button>
-    </div>
+
 </div>

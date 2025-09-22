@@ -23,12 +23,12 @@ class UpdateProductoRequest extends FormRequest
     {
         $id = $this->route('producto')->producto_id;
         return [
-         'nombre'   => 'required|string|max:20',
+         'nombre'   => 'required|string|max:50',
         'descripcion'   => 'required|string|max:250',
         'precio'   => 'required|numeric|min:0',
         'cantidad'  => 'required|integer|min:1',
         'dias_garantia'  => 'required|integer|min:1',
-        
+        'imagen' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             
         ];
     }
@@ -37,7 +37,7 @@ class UpdateProductoRequest extends FormRequest
     {
         return[
             'nombre.required'  => 'El nombre del producto es obligatorio',
-        'nombre.max'       => 'El nombre no puede superar los 20 caracteres',
+        'nombre.max'       => 'El nombre no puede superar los 50 caracteres',
 
         // Descripción
         'descripcion.required'  => 'La descripción es obligatoria',

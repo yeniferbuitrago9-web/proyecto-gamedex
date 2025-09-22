@@ -9,6 +9,8 @@ use App\Models\Producto;
 use App\Http\Requests\StoreTransaccioneRequest;
 use App\Http\Requests\UpdateTransaccioneRequest;
 use App\Enums\TipoTransaccion;
+use App\Enums\MetodoPago;
+use App\Enums\EstadoTransaccion;
 
 
 class TransaccioneController extends Controller
@@ -30,10 +32,12 @@ class TransaccioneController extends Controller
         $usuarios = Usuario::all();
         $productos = Producto::all();
         $tipos = TipoTransaccion::cases();
-        return view('transaccione.create', compact('tipos', 'usuarios', 'productos'));
+        $metodos = MetodoPago::cases();
+        $estados = EstadoTransaccion::cases(); 
+        return view('transaccione.create', compact('tipos', 'usuarios', 'productos', 'metodos','estados'));
     }
 
-    public function store(TransaccioneRequest $request)
+    public function store(StoreTransaccioneRequest $request)
     {
         
         Transaccione::create($request->validated());
@@ -53,14 +57,16 @@ class TransaccioneController extends Controller
     {
                 $usuarios = Usuario::all();
         $productos = Producto::all();
-         $tipos = TipoTransaccion::cases();
+        $tipos = TipoTransaccion::cases();
+        $metodos = MetodoPago::cases();
+        $estados = EstadoTransaccion::cases();
          
 
-        return view('transaccione.edit', compact('transaccione', 'usuarios', 'productos','tipos'));
+        return view('transaccione.edit', compact('transaccione', 'usuarios', 'productos', 'tipos', 'metodos','estados'));
     }
 
    
-    public function update(TransaccioneRequest $request, Transaccione $transaccione)
+    public function update(UpdateTransaccioneRequest $request, Transaccione $transaccione)
     {
         $transaccione->update($request->validated());
         return redirect()->route('transaccione.index')->with('success', 'Transacción actualizada correctamente');

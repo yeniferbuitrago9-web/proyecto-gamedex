@@ -4,32 +4,46 @@
 
 <div class="space-y-4">
     <div>
-        <label>Documento</label>
-        <input type="text" name="doc_usuario" value="{{ $val('doc_usuario') }}" required class="border p-2 w-full">
+        <label class="block text-sm font-semibold text-blue-400">Documento</label>
+        <input type="text" name="doc_usuario" 
+               value="{{ $val('doc_usuario') }}" 
+               required
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400">
     </div>
 
     <div>
-        <label>Nombre</label>
-        <input type="text" name="nombre" value="{{ $val('nombre') }}" required class="border p-2 w-full">
+        <label class="block text-sm font-semibold text-blue-400">Nombre</label>
+        <input type="text" name="nombre" 
+               value="{{ $val('nombre') }}" 
+               required
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400">
     </div>
 
     <div>
-        <label>Email</label>
-        <input type="email" name="email" value="{{ $val('email') }}" class="border p-2 w-full">
+        <label class="block text-sm font-semibold text-blue-400">Email</label>
+        <input type="email" name="email" 
+               value="{{ $val('email') }}" 
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400">
     </div>
 
     <div>
-        <label>Contraseña</label>
-        <input type="password" name="password" class="border p-2 w-full" {{ isset($usuario) ? '' : 'required' }}>
+        <label class="block text-sm font-semibold text-blue-400">Contraseña</label>
+        <input type="password" name="password" 
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400"
+               {{ isset($usuario) ? '' : 'required' }}>
     </div>
 
     <div>
-        <label>Confirmar Contraseña</label>
-        <input type="password" name="password_confirmation" class="border p-2 w-full" {{ isset($usuario) ? '' : 'required' }}>
+        <label class="block text-sm font-semibold text-blue-400">Confirmar Contraseña</label>
+        <input type="password" name="password_confirmation" 
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400"
+               {{ isset($usuario) ? '' : 'required' }}>
     </div>
 
     <div>
-        <label>Teléfono</label>
-        <input type="text" name="telefono" value="{{ $val('telefono') }}" class="border p-2 w-full">
+        <label class="block text-sm font-semibold text-blue-400">Teléfono</label>
+        <input type="text" name="telefono" 
+               value="{{ $val('telefono') }}" 
+               class="w-full p-2 rounded-md border border-gray-600 bg-gray-800 text-white focus:border-blue-500 focus:ring focus:ring-blue-400">
     </div>
 </div>

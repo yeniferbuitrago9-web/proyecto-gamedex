@@ -1,12 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
+            <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold mb-4">Lista de transaccione</h1>
+    <h1 class="text-2xl font-bold mb-4">Lista de transacciones</h1>
     @if($transaccione->isEmpty())
         <p>No hay transaccione registrados.</p>
     @else
     <p>
-          <a href="{{ route('transaccione.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Agregar transaccione</a>
+          <a href="{{ route('transaccione.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Agregar transaccion</a>
 
     @if(session('ok'))
         <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">
@@ -37,10 +38,10 @@
                         <td class="py-2 px-4 border">
         
                             </form>
-                            <a href="{{ route('transaccione.edit', $transaccione) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Editar</a>
+                            <a href="{{ route('transaccione.edit', $transaccione) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">✏️</a>
                             <form action="{{ route('transaccione.destroy', $transaccione) }}" method="POST" style="display:inline" onsubmit="return confirm('¿eliminar?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Eliminar</button>
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">❌</button>
                         </td>
                     </tr>
                 @endforeach

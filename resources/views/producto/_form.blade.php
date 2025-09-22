@@ -53,4 +53,16 @@
 
       
     </div>
+    <div class="mb-4">
+    <label for="imagen" class="block font-medium text-gray-700">Imagen del producto</label>
+    <input type="file" name="imagen" id="imagen" 
+           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200">
+    
+    {{-- Si estamos en editar y ya hay imagen, mostrarla --}}
+    @isset($producto->imagen)
+        <div class="mt-2">
+            <img src="{{ asset($producto->imagen) }}" alt="Imagen actual" width="100">
+        </div>
+    @endisset
+</div>
 </div>
