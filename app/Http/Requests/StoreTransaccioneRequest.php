@@ -24,7 +24,7 @@ class StoreTransaccioneRequest extends FormRequest
         return [
             'tipo' => 'required|string|max:50',
             'id_usuario' => 'required|integer|exists:usuario,id_usuario',
-            'id_producto' => 'required|integer|exists:producto,id_producto',
+            'id_producto' => 'required|integer|exists:productos,id_producto',
             'metodo_pago' => 'nullable|string|max:100',
             'monto' => 'required|numeric|min:0',
             'garantia' => 'nullable|string|max:255',

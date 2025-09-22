@@ -1,22 +1,25 @@
 <x-app-layout>
     <x-slot name="header">
+            <link rel="stylesheet" href="{{ asset('css/index.css') }}">
         <h2 class="text-2xl font-bold text-blue-600">
             {{ $producto->nombre }}
         </h2>
     </x-slot>
 
-    <div class="p-6 bg-white rounded-xl shadow-md flex flex-col md:flex-row gap-6">
-         <div class="md:w-1/2">
-        @if($producto->imagen)
-            <img src="{{ asset('images/' . $producto->imagen) }}" 
-                 alt="{{ $producto->nombre }}" 
-                class="max-h-64 w-auto object-contain rounded-lg shadow-md">
-                 @else
-    <img src="{{ asset('images/play5.png') }}" 
-         alt="Sin imagen" 
-        class="max-h-32 w-auto object-contain rounded-lg shadow-md">
+   <div class="p-6 bg-white rounded-xl shadow-md flex flex-col md:flex-row gap-6">
 
+  
+    <div class="md:w-1/2 flex justify-center">
+        @if($producto->imagen)
+            <img src="{{ asset($producto->imagen) }}" 
+                 alt="{{ $producto->nombre }}" 
+                 class="w-80 h-64 object-contain rounded-lg shadow-md bg-gray-100 p-2">
+        @else
+            <img src="{{ asset('images/productos/default.jpg') }}" 
+                 alt="Sin imagen" 
+                 class="w-80 h-64 object-contain rounded-lg shadow-md bg-gray-100 p-2">
         @endif
+    </div>
       <div class="md:w-1/2 flex flex-col justify-center">
             <p class="text-gray-700 mb-3">
                 <strong>Categoría:</strong> {{ $producto->categoria->nombre_categoria ?? 'Sin categoría' }}

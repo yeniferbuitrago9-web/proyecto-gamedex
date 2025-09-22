@@ -50,14 +50,11 @@
                 @foreach($productos as $producto)
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-5 flex flex-col">
                         @if($producto->imagen)
-                            <img src="{{ asset('images/productos/' . $producto->imagen) }}" 
-                                 alt="{{ $producto->nombre }}" 
-                                 class="h-56 w-full object-cover rounded-lg mb-4">
-                        @else
-                            <img src="{{ asset('images/products.png') }}" 
-                                 alt="Sin imagen" 
-                                 class="h-56 w-full object-cover rounded-lg mb-4">
-                        @endif
+    <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}" class="w-full h-full object-contain">
+@else
+    <img src="{{ asset('images/productos/default.jpg') }}" alt="Sin imagen" class="w-full h-full object-contain">
+@endif
+
                         <h2 class="text-lg font-semibold text-gray-800 mb-3">{{ $producto->nombre }}</h2>
                         <div class="flex justify-between mt-auto gap-2">
                             <a href="{{ route('producto.show', $producto->id_producto) }}" 

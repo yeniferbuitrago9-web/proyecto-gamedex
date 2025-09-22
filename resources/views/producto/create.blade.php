@@ -11,7 +11,7 @@
                 <div class="py-8">
                     <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white p-6 shadow sm:rounded-lg">
-                            <form action="{{ route('producto.store') }}" method="POST" class="space-y-6">
+                            <form action="{{ route('producto.store') }}" method="POST" class="space-y-6"enctype="multipart/form-data">
                                 @csrf
                                 @include('producto._form', [
                                      'producto' => null,
@@ -21,7 +21,9 @@
                                 ])
 
                                 <div class="pt-4 flex gap-3">
-                                <button class="px-4 py-2 bg-red-500 text-white rounded">Actualizar</button>
+                                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">
+    Guardar
+</button>
                                     <a href="{{ route('producto.index') }}"
                                        class="px-4 py-2 border rounded">Cancelar</a>
                                 </div>

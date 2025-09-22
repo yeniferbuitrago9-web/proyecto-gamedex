@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+           <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <div class="container mx-auto px-4 py-6">
     <h1 class="text-2xl font-bold mb-4">Lista de Usuarios</h1>
     @if($usuarios->isEmpty())
@@ -33,12 +34,12 @@
             <td class="border px-2 py-1">{{ $usuario->email }}</td>
             <td class="border px-2 py-1">{{ $usuario->telefono }}</td>
             <td class="border px-2 py-1">
-                <a href="{{ route('usuario.edit', $usuario) }}" class="bg-yellow-500 text-white px-2 py-1 rounded">Editar</a>
+                <a href="{{ route('usuario.edit', $usuario) }}" class="bg-yellow-500 text-white px-2 py-1 rounded">✏️</a>
 
                 <form action="{{ route('usuario.destroy', $usuario) }}" method="POST" style="display:inline-block">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded" onclick="return confirm('¿Eliminar usuario?')">Eliminar</button>
+                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded" onclick="return confirm('¿Eliminar usuario?')">❌</button>
                 </form>
             </td>
         </tr>

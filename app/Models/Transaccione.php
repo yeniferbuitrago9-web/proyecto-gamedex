@@ -36,7 +36,7 @@ class Transaccione extends Model
 		'id_usuario' => 'int',
 		'id_producto' => 'int',
 		'monto' => 'float',
-		'fecha' => 'datetime'
+		'fecha' => 'date'
 	];
 
 	protected $fillable = [

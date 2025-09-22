@@ -45,7 +45,8 @@ class Producto extends Model
 		'descripcion',
 		'precio',
 		'cantidad',
-		'dias_garantia'
+		'dias_garantia',
+		'imagen',
 	];
 
 	public function categoria()

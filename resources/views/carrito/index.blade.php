@@ -1,15 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
         <h2 class="text-xl font-bold text-blue-600">
             Mi Carrito
         </h2>
     </x-slot>
-
     <div class="container mx-auto px-4 py-6">
         @if($carrito && $carrito->items->count())
             <table id="carrito" class="display nowrap w-full">
-                <thead>
-                    
+                <thead>                   
                     <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
@@ -17,25 +16,24 @@
                         <th>Subtotal</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
-                
+                </thead>               
                 <tbody>
                     @foreach($carrito->items as $item)
                         <tr>
-                            <td>{{ $item->producto->nombre }}</td>
+                            <td>{{ $item->producto->nombre ?? 'Producto no disponible' }}</td>
                             <td>{{ $item->cantidad }}</td>
-                            <td>${{ number_format($item->producto->precio, 0, ',', '.') }}</td>
-                            <td>${{ number_format($item->cantidad * $item->producto->precio, 0, ',', '.') }}</td>
+                            <td>${{ number_format($item->producto?->precio ?? 0, 0, ',', '.') }}</td>
+                            <td>${{ number_format($item->cantidad * ($item->producto?->precio ?? 0), 0, ',', '.') }}</td>
+
                              <td class="py-2 px-4 border">
         
                             </form>
-                            <a href="{{ route('carrito.edit', $carrito) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Editar</a>
+                            <a href="{{ route('carrito.edit', $carrito) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">✏️</a>
                             <form action="{{ route('carrito.item.destroy', $item->id_item) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar producto?')">
                               @csrf
                               @method('DELETE')
-                             <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Eliminar</button>
+                             <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">❌</button>
                               </form>
-
                         </td>
                         </tr>
                     @endforeach

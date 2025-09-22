@@ -50,6 +50,14 @@ class ProductoController extends Controller
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
         $producto->update($request->validated());
+          if ($request->hasFile('imagen')) {
+        $filename = time().'_'.$request->imagen->getClientOriginalName();
+        $request->imagen->move(public_path('images/productos'), $filename);
+        $data['imagen'] = 'images/productos/'.$filename;
+    }
+    $producto->update($data);
+
+
         return redirect()->route('producto.index')->with('ok', '✅ Producto actualizado');
     }
 
