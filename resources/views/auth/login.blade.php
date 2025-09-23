@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-900 to-indigo-700">
+    <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-900 to-indigo-600">
         <!-- Contenedor del login -->
         <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
             
@@ -9,9 +9,9 @@
                   <div class="mb-4">
         <img src="{{ asset('images/gamedexito.jpg') }}" 
              alt="Logo Gamedexito" 
-             class="w-24 h-24 rounded-full shadow-md border-2 border-blue-500">
+             class="w-24 h-24 rounded-full shadow-md border-2 border-blue-800">
     </div>
-    <h1 class="text-3xl font-bold text-blue-600">GameDex</h1>
+    <h1 class="text-3xl font-bold text-blue-900">GameDex</h1>
 </div>
 
             <!-- Validación de errores -->
@@ -39,7 +39,7 @@
                     />
                     <x-input 
                         id="email"  
-                        class="text-gray-700 text-base w-full rounded-lg border border-gray-300 placeholder-gray-400 focus:ring-blue-400 focus:border-blue-400"  
+                        class="bg-white text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
                         type="email" 
                         name="email" 
                         :value="old('email')" 
@@ -58,7 +58,7 @@
                     />
                     <x-input 
                         id="password" 
-                        class="text-gray-700 text-base w-full rounded-lg border border-gray-300 placeholder-gray-400 focus:ring-blue-400 focus:border-blue-400"  
+                        class="bg-white text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
                         type="password" 
                         name="password" 
                         required 
@@ -69,7 +69,7 @@
                 <!-- Recordarme -->
                 <div class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <label for="remember_me" class="ml-2 text-gray-600 text-sm">
+                    <label for="remember_me" class="ml-2 text-black text-sm">
                         {{ __('Remember me') }}
                     </label>
                 </div>
@@ -77,13 +77,13 @@
                 <!-- Botón y enlace -->
                 <div class="flex flex-col sm:flex-row sm:justify-between items-center mt-4">
                     @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-600 hover:underline mb-3 sm:mb-0" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                        <a class="text-sm text-blue-700 hover:text-blue-900 hover:underline transition duration-200 mb-3 sm:mb-0" href="{{ route('password.request') }}">
+                            {{ __('Olvidaste tu contraseña?') }}
                         </a>
                     @endif
 
-                    <x-button class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
-                        {{ __('Log in') }}
+                    <x-button class="w-full sm:w-auto bg-blue-700 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        {{ __('Iniciar sesion') }}
                     </x-button>
                 </div>
             </form>
