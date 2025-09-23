@@ -1,18 +1,18 @@
 <x-guest-layout>
-    <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-900 to-indigo-600">
+    <div class="flex flex-col justify-center items-center py-16">
+
         <!-- Contenedor del login -->
         <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-            
+
             <!-- Logo y nombre -->
             <div class="flex flex-col items-center mb-6">
-                <!-- Espacio para logo -->
-                  <div class="mb-4">
-        <img src="{{ asset('images/gamedexito.jpg') }}" 
-             alt="Logo Gamedexito" 
-             class="w-24 h-24 rounded-full shadow-md border-2 border-blue-800">
-    </div>
-    <h1 class="text-3xl font-bold text-blue-900">GameDex</h1>
-</div>
+                <div class="mb-4">
+                    <img src="{{ asset('images/gamedexito.jpg') }}" 
+                         alt="Logo Gamedexito" 
+                         class="w-24 h-24 rounded-full shadow-md border-2 border-blue-800">
+                </div>
+                <h1 class="text-3xl font-bold text-blue-600">GameDex</h1>
+            </div>
 
             <!-- Validación de errores -->
             <x-validation-errors class="mb-4" />
@@ -39,7 +39,7 @@
                     />
                     <x-input 
                         id="email"  
-                        class="bg-white text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
+                        class="bg-blue-50 text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
                         type="email" 
                         name="email" 
                         :value="old('email')" 
@@ -58,7 +58,7 @@
                     />
                     <x-input 
                         id="password" 
-                        class="bg-white text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
+                        class="bg-blue-50 text-black text-base w-full rounded-lg border border-gray-300 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 transition duration-300"  
                         type="password" 
                         name="password" 
                         required 
@@ -69,23 +69,25 @@
                 <!-- Recordarme -->
                 <div class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <label for="remember_me" class="ml-2 text-black text-sm">
-                        {{ __('Remember me') }}
+                    <label for="remember_me" class="ml-3 text-black text-sm">
+                        {{ __('Recordar contraseña') }}
                     </label>
                 </div>
 
-                <!-- Botón y enlace -->
-                <div class="flex flex-col sm:flex-row sm:justify-between items-center mt-4">
-                    @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-700 hover:text-blue-900 hover:underline transition duration-200 mb-3 sm:mb-0" href="{{ route('password.request') }}">
-                            {{ __('Olvidaste tu contraseña?') }}
-                        </a>
-                    @endif
+              <!-- Botón y enlace -->
+<div class="flex flex-col items-center mt-4 space-y-4">
+    @if (Route::has('password.request'))
+       <a class="text-sm text-blue-700 hover:text-blue-900 hover:underline transition duration-200" href="{{ route('password.request') }}">
+            {{ __('Olvidaste tu contraseña?') }}
+       </a>
+    @endif
 
-                    <x-button class="w-full sm:w-auto bg-blue-700 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                        {{ __('Iniciar sesion') }}
-                    </x-button>
-                </div>
+    <x-button class="w-full sm:w-auto bg-black hover:bg-gray-800 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+        {{ __('Iniciar sesion') }}
+    </x-button>
+</div>
+
+
             </form>
         </div>
     </div>

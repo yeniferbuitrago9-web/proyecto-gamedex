@@ -1,4 +1,5 @@
 <x-app-layout>
+    
 
     <!-- Fondo principal -->
 <div class="bg-gray-800 min-h-screen py-8 px-6 space-y-10 text-white">
