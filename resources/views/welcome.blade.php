@@ -67,7 +67,7 @@
                                 <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border border-[#e3e3e0]">
                                     <span class="rounded-full bg-[#fdfdfc] w-1.5 h-1.5"></span>
                                 </span>
-                            </span>
+ wwwwwwwwwwwwwww                           </span>
                             <span>
                                 Bienvenidos a las 
                                 <a href="{{ url('/dashboard') }}" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] ml-1">

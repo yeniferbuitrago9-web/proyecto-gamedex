@@ -1,17 +1,18 @@
 <x-guest-layout>
-    <div class="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4">
+    <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-900 to-indigo-700">
         <!-- Contenedor del login -->
         <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
             
             <!-- Logo y nombre -->
             <div class="flex flex-col items-center mb-6">
                 <!-- Espacio para logo -->
-                <div class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
-                    <!-- Aquí luego pones tu logo -->
-                    <span class="text-gray-500 text-sm">Bienvenidos</span>
-                </div>
-                <h1 class="text-3xl font-bold text-blue-600">GameDex</h1>
-            </div>
+                  <div class="mb-4">
+        <img src="{{ asset('images/gamedexito.jpg') }}" 
+             alt="Logo Gamedexito" 
+             class="w-24 h-24 rounded-full shadow-md border-2 border-blue-500">
+    </div>
+    <h1 class="text-3xl font-bold text-blue-600">GameDex</h1>
+</div>
 
             <!-- Validación de errores -->
             <x-validation-errors class="mb-4" />
