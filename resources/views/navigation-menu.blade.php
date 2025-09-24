@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
     <a href="{{ route('dashboard') }}">
-        <img src="{{ asset('images/logo.png') }}" alt="GameDex Logo" class="h-16 w-auto">
+        <img src="{{ asset('images/gamedexito.jpg') }}" alt="GameDex Logo" class="h-16 w-auto">
     </a>
 </div>
 
