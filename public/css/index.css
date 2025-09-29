@@ -1,3 +1,4 @@
+
 /* public/css/tablas.css */
 
 /* Contenedor general */
@@ -5,26 +6,26 @@
     background-color: white;
     border-radius: 8px;
     padding: 20px;
-    color: #111827;
+    color: #1f2937; /* gris oscuro */
     font-size: 0.95rem;
 }
 
 /* Botón principal (Agregar, etc.) */
 a.bg-blue-500 {
-    background-color: #374151;
+    background-color: #1f2937; /* gris oscuro del menú */
     color: #f9fafb;
     padding: 6px 12px;
     border-radius: 6px;
     transition: background 0.2s ease;
 }
 a.bg-blue-500:hover {
-    background-color: #1f2937;
+    background-color: #374151; /* un tono más claro */
 }
 
-/* --- BOTONES DATATABLES CON ÍCONOS Y COLORES --- */
+/* --- BOTONES DATATABLES --- */
 button.dt-button {
     border: 1px solid #d1d5db;
-    color: #111827;
+    color: #1f2937;
     padding: 6px 12px;
     border-radius: 6px;
     margin-right: 6px;
@@ -81,17 +82,13 @@ button.dt-button:hover {
     transform: translateY(-1px);
 }
 
-button.dt-button:hover {
-    background-color: #e5e7eb;
-}
-
 /* Input buscar */
 .dataTables_filter input {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     padding: 4px 8px;
     background-color: #f9fafb;
-    color: #111827;
+    color: #1f2937;
 }
 
 /* --- ESTILO GENERAL PARA TODAS LAS TABLAS --- */
@@ -100,14 +97,14 @@ table.dataTable {
     border-collapse: collapse;
     border-radius: 6px;
     overflow: hidden;
-    background-color: #111827; /* fondo tabla oscuro */
-    color: #f3f4f6;
+    background-color: #ffffff; /* tabla blanca */
+    color: #1f2937; /* texto gris oscuro */
 }
 
 /* Encabezados */
 table.dataTable thead th {
-    background-color: #000000; /* negro */
-    color: #2563eb; /* azul */
+    background-color: #e5e7eb; /* gris suave */
+    color: #1f2937; /* gris oscuro */
     padding: 10px;
     text-align: center;
     font-weight: 600;
@@ -115,15 +112,15 @@ table.dataTable thead th {
 
 /* Celdas */
 table.dataTable tbody td {
-    background-color: #1f2937; /* gris oscuro */
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
-    border-bottom: 1px solid #374151;
+    border-bottom: 1px solid #e5e7eb; /* gris claro */
 }
 
 /* Hover en filas */
 table.dataTable tbody tr:hover {
-    background-color: #374151;
+    background-color: #f3f4f6; /* gris muy suave */
     transition: 0.2s;
 }
 
@@ -163,3 +160,4 @@ table.dataTable a.bg-green-500 {
 table.dataTable a.bg-green-500:hover {
     background-color: #16a34a;
 }
+
