@@ -4,8 +4,13 @@
             <x-authentication-card-logo />
         </x-slot>
 
+ ajuste_final
+        <div class="mb-4 text-sm text-gray-600">
+            {{ __('¿Olvidaste tu contraseña? No hay problema. Simplemente indícanos tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña y podrás elegir una nueva..') }}
+
         <div class="mb-4 text-sm text-black-600">
             {{ __('Hola gamer olvidaste tu contraseña? No hay problema. Solo indícanos tu correo electrónico y te enviaremos un enlace para que puedas crear una nueva.') }}
+ main
         </div>
 
         @session('status')
@@ -31,5 +36,14 @@
     </div>
 </form>
 
+ ajuste_final
+            <div class="flex items-center justify-end mt-4">
+                <x-button>
+                    {{ __('Enlace para restablecer contraseña de correo electrónico') }}
+                </x-button>
+            </div>
+        </form>
+
+ main
     </x-authentication-card>
 </x-guest-layout>

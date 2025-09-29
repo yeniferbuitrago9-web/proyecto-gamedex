@@ -2,7 +2,7 @@
     
 
     <!-- Fondo principal -->
-<div class="bg-gray-800 min-h-screen py-8 px-6 space-y-10 text-white">
+<div class="bg-gray-100 min-h-screen py-8 px-6 space-y-10 text-white">
         <!-- Banner principal -->
         <div class="bg-gradient-to-r from-blue-800 to-indigo-800 rounded-2xl shadow-lg p-8 flex items-center justify-between">
             <div>
@@ -16,23 +16,20 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <a href="{{ route('producto.index') }}" class="block">
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center">
-            <img src="{{ asset('images/products.png') }}" class="h-36 mx-auto mb-3" alt="Productos">
+            <img src="{{ asset('images/products.png') }}" class="h-24 mx-auto mb-3" alt="Productos">
             <h2 class="text-gray-500 text-sm">Productos</h2>
-            <p class="text-3xl font-bold text-blue-500">120</p>
         </div>
     </a>
     <a href="{{ route('transaccione.index') }}" class="block">
             <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center">
                 <img src="{{ asset('images/sales.png') }}" class="h-24 mx-auto mb-3" alt="Transacciones">
                 <h2 class="text-gray-500 text-sm">Transacciones</h2>
-                <p class="text-3xl font-bold text-green-500">85</p>
             </div>
              </a>
               <a href="{{ route('carrito.index') }}" class="block">
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center">
             <img src="{{ asset('images/exchange.png') }}" class="h-24 mx-auto mb-3" alt="Carritos">
-            <h2 class="text-gray-500 text-sm">Carritos</h2>
-            <p class="text-3xl font-bold text-yellow-500">32</p>
+            <h2 class="text-gray-500 text-sm">Carrito</h2>
         </div>
     </a>
 
@@ -40,7 +37,6 @@
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center">
             <img src="{{ asset('images/users.png') }}" class="h-24 mx-auto mb-3" alt="Usuarios">
             <h2 class="text-gray-500 text-sm">Usuarios</h2>
-            <p class="text-3xl font-bold text-purple-500">58</p>
         </div>
     </a>
 </div>

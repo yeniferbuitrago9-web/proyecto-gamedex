@@ -55,11 +55,12 @@ class ProductoController extends Controller
         $request->imagen->move(public_path('images/productos'), $filename);
         $data['imagen'] = 'images/productos/'.$filename;
     }
-    $producto->update($data);
 
 
         return redirect()->route('producto.index')->with('ok', '✅ Producto actualizado');
     }
+
+    
 
     public function destroy(Producto $producto)
     {
